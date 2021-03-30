@@ -1,0 +1,19 @@
+<?php if(isset($cities)){ ?>
+    <?php foreach ($cities->return as $ct){ ?>
+
+  <li class="active" >
+      <a href="index.php?chercher=<?= $ct->nameCity ?>"><?php echo($ct->nameCity); ?></a>
+  </li>
+  <?php } ?>
+<?php } ?>
+
+
+
+<?php if(isset($destinations)){ ?>
+    <?php foreach ($destinations->return as $dt){ ?>
+
+  <li class="active">
+      <a href="index.php?chercher=<?= $dt->nameCity; ?>"><?php echo($dt->nameCity); ?></a>
+  </li>
+  <?php } ?>
+<?php } ?>
