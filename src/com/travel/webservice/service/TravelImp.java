@@ -13,6 +13,7 @@ import com.travel.webservice.model.Cities;
 import com.travel.webservice.model.Countries;
 import com.travel.webservice.model.DEST_TYPE;
 import com.travel.webservice.model.DataBaseHelper;
+import com.travel.webservice.model.DestName;
 import com.travel.webservice.model.Destinations;
 
 
@@ -46,16 +47,11 @@ public class TravelImp implements Travel{
 	}
 	
 	
-	
-	
-	
-	
-	
 	//All destination per city
     public List<Destinations> getDestinationsByCity(int id) {
         List<Destinations> cityDest  = new ArrayList<Destinations>();
         try {
-            String sql ="select * from destinations where city_id = ?";
+            String sql ="SELECT * FROM destinations JOIN dest_type on destinations.typeDest = dest_type.id where city_id =? ";
             db.myPrepareStatement(sql);
             Object[] parameters = {id};
             db.addParameters(parameters);
@@ -65,7 +61,7 @@ public class TravelImp implements Travel{
                 dt.setId(rs.getInt("id"));
                 dt.setNameDest(rs.getString("nameDest"));
                 dt.setTypeDest(rs.getInt("typeDest"));
-                
+                dt.setDestName(rs.getString("destType"));
                 cityDest.add(dt);
             }
         } catch (Exception e) {
@@ -76,18 +72,20 @@ public class TravelImp implements Travel{
     
   //All cities per Diestination type
 
-    public List<Cities> getCitiesByTypeDest(String type_dest) {
+    public List<Cities> getCities() {
         List<Cities> cityType  = new ArrayList<Cities>();
         try {
-        	 String sql ="SELECT * FROM cities c, destinations d WHERE c.id = d.city_id AND d.typeDest = ?";
+        	String sql ="Select * from cities join countries on cities.country_id = countries.id_country";
             db.myPrepareStatement(sql);
-            Object[] parameters = {type_dest};
-            db.addParameters(parameters);
             ResultSet rs = db.myExecuteQuery();
             while(rs.next()) {
                 Cities ct = new Cities();
                 ct.setId(rs.getInt("id"));
+                ct.setLongitude(rs.getFloat("longitude"));
+                ct.setLatitude(rs.getFloat("latitude"));
+                ct.setIdCountry(rs.getInt("country_id"));
                 ct.setName(rs.getString("name"));
+                ct.setCountryName(rs.getString("countryName"));
                 
                 cityType.add(ct);
             }
@@ -108,6 +106,7 @@ public class TravelImp implements Travel{
         	DEST_TYPE dest_type = new DEST_TYPE();
         	dest_type.setId(rs.getInt("id"));
         	dest_type.setDestType(rs.getString("destType"));
+        	dest_type.setImg_link(rs.getString("img_link"));
         	destTypeList.add(dest_type);
         }
 	    } catch (Exception e) {
@@ -115,6 +114,32 @@ public class TravelImp implements Travel{
 	        System.out.print(e.getMessage());
 	    }
 		return destTypeList;
+	}
+
+
+
+	public List<DestName> getDestName(int idDestType) {
+		// TODO Auto-generated method stub
+		 List<DestName> dn  = new ArrayList<DestName>();
+		 try {
+	            String sql ="SELECT * FROM destinations join dest_type on destinations.typeDest = ? JOIN cities on destinations.city_id =cities.id";
+	            db.myPrepareStatement(sql);
+	            Object[] parameters = {idDestType};
+	            db.addParameters(parameters);
+	            ResultSet rs = db.myExecuteQuery();
+	            while(rs.next()) {
+	                DestName destName = new DestName();
+	                destName.setId(rs.getInt("id"));
+	                destName.setNameDest(rs.getString("nameDest"));
+	                destName.setTyDest(rs.getInt("typeDest"));
+	                destName.setCity_id(rs.getInt("city_id"));
+	                destName.setCityName(rs.getString("name"));
+	                dn.add(destName);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return dn;
 	}
     
 

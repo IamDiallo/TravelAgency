@@ -12,11 +12,11 @@ import javax.xml.bind.annotation.XmlType;
  * Generated source version: 2.7.18
  */
 
-@XmlRootElement(name = "getDestinations", namespace = "http://service.webservice.travel.com/")
+@XmlRootElement(name = "getCities", namespace = "http://service.webservice.travel.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getDestinations", namespace = "http://service.webservice.travel.com/")
+@XmlType(name = "getCities", namespace = "http://service.webservice.travel.com/")
 
-public class GetDestinations {
+public class GetCities {
 
 
 }

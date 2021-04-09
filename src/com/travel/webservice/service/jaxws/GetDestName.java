@@ -13,21 +13,21 @@ import javax.xml.bind.annotation.XmlType;
  * Generated source version: 2.7.18
  */
 
-@XmlRootElement(name = "getDestinationsByCity", namespace = "http://service.webservice.travel.com/")
+@XmlRootElement(name = "getDestName", namespace = "http://service.webservice.travel.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getDestinationsByCity", namespace = "http://service.webservice.travel.com/")
+@XmlType(name = "getDestName", namespace = "http://service.webservice.travel.com/")
 
-public class GetDestinationsByCity {
+public class GetDestName {
 
-    @XmlElement(name = "idCity")
-    private int idCity;
+    @XmlElement(name = "idDestType")
+    private int idDestType;
 
-    public int getIdCity() {
-        return this.idCity;
+    public int getIdDestType() {
+        return this.idDestType;
     }
 
-    public void setIdCity(int newIdCity)  {
-        this.idCity = newIdCity;
+    public void setIdDestType(int newIdDestType)  {
+        this.idDestType = newIdDestType;
     }
 
 }
