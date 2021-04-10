@@ -55,11 +55,10 @@
 			foreach ($cities->result as $cit){?>
 			<form method="post" action="city.php">
 				<figure>
-					<img src="img/Paris.jpeg" alt="Bangkok - Pattaya for 6 days">
+					<img src="<?php echo  $cit->cityImg ?>" alt="Bangkok - Pattaya for 6 days" style="height:250px">
 					<figcaption>
 						<div class="tour_title">
-							<strong class="title"><?php echo $cit->name; ?></strong> 
-							Special for group travelling, countless scenic spots with no extra cost.
+							<h4><strong class="title"><?php echo $cit->name; ?></strong></h4> 
 						</div>
 						<div>
 							<em class="sat">Rating 87%</em>
@@ -85,38 +84,35 @@
 <footer id="footer">
 	<div class="top sm-hidden">
 		<div class="column left">
-			<h2>Partnership</h2>
+			<h2>Travel Agency</h2>
 			<hr>
 			<ul>
-				<li><a href="###">YHA China</a></li>
-				<li><a href="###">Qunar Travel</a></li>
-				<li><a href="###">Ali Trip</a></li>
-				<li><a href="###">Youth Travel Service</a></li>
+				<li><a href="###">Discover City</a></li>
+				<li><a href="###">Discover Destinations</a></li>
+				<li><a href="###">Get Weather Info</a></li>
 			</ul>
 		</div>
 		<div class="column mid">
 			<h2>FAQ</h2>
 			<hr>
 			<ul>
-				<li><a href="###">When shall I sign the contract.</a></li>
 				<li><a href="###">How about the discount for children.</a></li>
 				<li><a href="###">What is the best time travel to Australia.</a></li>
 				<li><a href="###">How many kinds of travel insurance.</a></li>
-				<li><a href="###">Can I change the date, is that free.</a></li>
 			</ul>			
 		</div>
 		<div class="column right">
-			<h2>Contact</h2>
+			<h2>Authors</h2>
 			<hr>
 			<ul>
-				<li><a href="###">Email: info@dreamtour.com</a></li>
-				<li><a href="###">Phone: 010-23504668.</a></li>
-				<li><a href="###">Address: 33 Nanjing rd, Beijing, China.</a></li>
+				<li><a href="###">DIALLO Mamadou Bella</a></li>
+				<li><a href="###">DIAWARA Mourtalla Faty</a></li>
+				<li><a href="###">Design Inspired by Dream Tour</a></li>
 			</ul>			
 		</div>
 	</div>
 	<div class="clearfix"></div>
-	<div class="bottom">Copyright &copy; Dream Tour 2016 | Developed by Bright</div>
+	<div class="bottom">Web Services University Project</div>
 </footer>
 <!-- footer end -->
 </body>

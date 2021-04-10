@@ -18,7 +18,7 @@
     $param = new stdClass();
     $param->idDestType = 1;
     try {
-        $listDestination = $clientSOAP->__soapCall("getDestName", array($param));
+        $listDestination = $clientSOAP->__soapCall("getDestinationName", array($param));
     } catch(Exception $e) {
         var_dump($e);
     }

@@ -30,7 +30,6 @@ include("traitement.php");
 				<li><a href="index.php">Home</a></li>
 				<li><a href="tour.php">Tours</a></li>
 				<li><a href="flight.html">Flights</a></li>
-				<li class="active"><a href="gallery.html">Gallery</a></li>
 				<li><a href="about.html">About</a></li>
 			</ul>
 		</nav>
@@ -57,7 +56,7 @@ include("traitement.php");
     <div class="row">
         <div class="col-md-4 col-md-offset-4" style="">
         <!-- <img src="" alt="" srcset="" id="weather-icon" style="margin-left:30px"> -->
-        <div id="location" style="margin-top:10px">Unable to Fetch Weather</div>
+        <div id="location" style="margin-top:10px"><?php echo $cityName?></div>
         <div class="desc" style="font-size:20px;margin-top:10px">No Information Available.</div>
         <div class="weather" style="font-size:20px;margin-top:20px">
             <div class="c" style="margin-left:40px">Error</div>
@@ -155,38 +154,35 @@ include("traitement.php");
 <footer id="footer">
 	<div class="top sm-hidden">
 		<div class="column left">
-			<h2>Partnership</h2>
+			<h2>Travel Agency</h2>
 			<hr>
 			<ul>
-				<li><a href="###">YHA China</a></li>
-				<li><a href="###">Qunar Travel</a></li>
-				<li><a href="###">Ali Trip</a></li>
-				<li><a href="###">Youth Travel Service</a></li>
+				<li><a href="###">Discover City</a></li>
+				<li><a href="###">Discover Destinations</a></li>
+				<li><a href="###">Get Weather Info</a></li>
 			</ul>
 		</div>
 		<div class="column mid">
 			<h2>FAQ</h2>
 			<hr>
 			<ul>
-				<li><a href="###">When shall I sign the contract.</a></li>
 				<li><a href="###">How about the discount for children.</a></li>
 				<li><a href="###">What is the best time travel to Australia.</a></li>
 				<li><a href="###">How many kinds of travel insurance.</a></li>
-				<li><a href="###">Can I change the date, is that free.</a></li>
 			</ul>			
 		</div>
 		<div class="column right">
-			<h2>Contact</h2>
+			<h2>Authors</h2>
 			<hr>
 			<ul>
-				<li><a href="###">Email: info@dreamtour.com</a></li>
-				<li><a href="###">Phone: 010-23504668.</a></li>
-				<li><a href="###">Address: 33 Nanjing rd, Beijing, China.</a></li>
+				<li><a href="###">DIALLO Mamadou Bella</a></li>
+				<li><a href="###">DIAWARA Mourtalla Faty</a></li>
+				<li><a href="###">Design Inspired by Dream Tour</a></li>
 			</ul>			
 		</div>
 	</div>
 	<div class="clearfix"></div>
-	<div class="bottom">Copyright &copy; Dream Tour 2016 | Developed by Bright</div>
+	<div class="bottom">Web Services University Project</div>
 </footer>
 <!-- footer end -->
 <script src="weatherAPI.js"></script>
