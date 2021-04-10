@@ -13,7 +13,7 @@ import com.travel.webservice.model.Cities;
 import com.travel.webservice.model.Countries;
 import com.travel.webservice.model.DEST_TYPE;
 import com.travel.webservice.model.DataBaseHelper;
-import com.travel.webservice.model.DestName;
+import com.travel.webservice.model.DestinationName;
 import com.travel.webservice.model.Destinations;
 
 
@@ -119,9 +119,9 @@ public class TravelImp implements Travel{
 
 
 
-	public List<DestName> getDestName(int idDestType) {
+	public List<DestinationName> getDestinationName(int idDestType) {
 		// TODO Auto-generated method stub
-		 List<DestName> dn  = new ArrayList<DestName>();
+		 List<DestinationName> dn  = new ArrayList<DestinationName>();
 		 try {
 	            String sql ="SELECT * FROM destinations join dest_type on destinations.typeDest = ? JOIN cities on destinations.city_id =cities.id group by nameDest";
 	            db.myPrepareStatement(sql);
@@ -129,10 +129,10 @@ public class TravelImp implements Travel{
 	            db.addParameters(parameters);
 	            ResultSet rs = db.myExecuteQuery();
 	            while(rs.next()) {
-	                DestName destName = new DestName();
+	            	DestinationName destName = new DestinationName();
 	                destName.setId(rs.getInt("id"));
 	                destName.setNameDest(rs.getString("nameDest"));
-	                destName.setTyDest(rs.getInt("typeDest"));
+	                destName.setTypeDest(rs.getInt("typeDest"));
 	                destName.setCity_id(rs.getInt("city_id"));
 	                destName.setCityName(rs.getString("name"));
 	                dn.add(destName);
