@@ -86,6 +86,7 @@ public class TravelImp implements Travel{
                 ct.setIdCountry(rs.getInt("country_id"));
                 ct.setName(rs.getString("name"));
                 ct.setCountryName(rs.getString("countryName"));
+                ct.setCityImg(rs.getString("cityImg"));
                 
                 cityType.add(ct);
             }
@@ -122,7 +123,7 @@ public class TravelImp implements Travel{
 		// TODO Auto-generated method stub
 		 List<DestName> dn  = new ArrayList<DestName>();
 		 try {
-	            String sql ="SELECT * FROM destinations join dest_type on destinations.typeDest = ? JOIN cities on destinations.city_id =cities.id";
+	            String sql ="SELECT * FROM destinations join dest_type on destinations.typeDest = ? JOIN cities on destinations.city_id =cities.id group by nameDest";
 	            db.myPrepareStatement(sql);
 	            Object[] parameters = {idDestType};
 	            db.addParameters(parameters);
