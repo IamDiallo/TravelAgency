@@ -45,6 +45,7 @@
     <wsdl:part name="parameters" element="tns:getDestinations">
     </wsdl:part>
   </wsdl:message>
+  
   <wsdl:portType name="Travel">
     <wsdl:operation name="getDestinationsByCity">
       <wsdl:input name="getDestinationsByCity" message="tns:getDestinationsByCity">
