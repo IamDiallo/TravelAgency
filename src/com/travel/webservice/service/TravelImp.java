@@ -4,17 +4,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebResult;
+
 import javax.jws.WebService;
 
-import com.travel.webservice.model.Cities;
-import com.travel.webservice.model.Countries;
-import com.travel.webservice.model.DEST_TYPE;
+import com.travel.webservice.model.City;
+import com.travel.webservice.model.Country;
+import com.travel.webservice.model.DestType;
 import com.travel.webservice.model.DataBaseHelper;
 import com.travel.webservice.model.DestinationName;
-import com.travel.webservice.model.Destinations;
+import com.travel.webservice.model.Destination;
 
 
 @WebService(targetNamespace = "http://service.webservice.travel.com/",
@@ -23,20 +21,18 @@ portName = "TravelPort",serviceName = "TravelService")
 public class TravelImp implements Travel{
 
 	DataBaseHelper db = DataBaseHelper.getInstance();
-	@WebMethod(operationName = "getCountry", action = "urn:GetCountry")
-	@WebResult(name = "return")
-	public List<Countries> getCountry() {  // get the list of all countries
+	
+	public List<Country> getCountry() {  // get the list of all countries
 		// TODO Auto-generated method stub
-		List<Countries> countries = new ArrayList<Countries>();
+		List<Country> countries = new ArrayList<Country>();
 		try {
         String sql ="select * from countries";
         db.myPrepareStatement(sql);
         ResultSet rs = db.myExecuteQuery();
         while(rs.next()) {
-        	Countries ct = new Countries();
-            ct.setId(rs.getInt("id"));
-            ct.setName(rs.getString("name"));
-            ct.setContinent(rs.getString("continent"));
+        	Country ct = new Country();
+            ct.setId(rs.getInt("id_country"));
+            ct.setName(rs.getString("countryName"));
             countries.add(ct);
         }
 	    } catch (Exception e) {
@@ -48,8 +44,8 @@ public class TravelImp implements Travel{
 	
 	
 	//All destination per city
-    public List<Destinations> getDestinationsByCity(int id) {
-        List<Destinations> cityDest  = new ArrayList<Destinations>();
+    public List<Destination> getDestinationsByCity(int id) {
+        List<Destination> cityDest  = new ArrayList<Destination>();
         try {
             String sql ="SELECT * FROM destinations JOIN dest_type on destinations.typeDest = dest_type.id where city_id =? ";
             db.myPrepareStatement(sql);
@@ -57,11 +53,12 @@ public class TravelImp implements Travel{
             db.addParameters(parameters);
             ResultSet rs = db.myExecuteQuery();
             while(rs.next()) {
-                Destinations dt = new Destinations();
+                Destination dt = new Destination();
                 dt.setId(rs.getInt("id"));
                 dt.setNameDest(rs.getString("nameDest"));
                 dt.setTypeDest(rs.getInt("typeDest"));
                 dt.setDestName(rs.getString("destType"));
+                dt.setImg(rs.getString("img"));
                 cityDest.add(dt);
             }
         } catch (Exception e) {
@@ -72,14 +69,14 @@ public class TravelImp implements Travel{
     
   //All cities per Diestination type
 
-    public List<Cities> getCities() {
-        List<Cities> cityType  = new ArrayList<Cities>();
+    public List<City> getCities() {
+        List<City> cityType  = new ArrayList<City>();
         try {
         	String sql ="Select * from cities join countries on cities.country_id = countries.id_country";
             db.myPrepareStatement(sql);
             ResultSet rs = db.myExecuteQuery();
             while(rs.next()) {
-                Cities ct = new Cities();
+                City ct = new City();
                 ct.setId(rs.getInt("id"));
                 ct.setLongitude(rs.getFloat("longitude"));
                 ct.setLatitude(rs.getFloat("latitude"));
@@ -97,14 +94,14 @@ public class TravelImp implements Travel{
     }
 
     // list of destinations
-	public List<DEST_TYPE> getDestinations() {
-		List<DEST_TYPE> destTypeList = new ArrayList<DEST_TYPE>();
+	public List<DestType> getDestinations() {
+		List<DestType> destTypeList = new ArrayList<DestType>();
 		try {
         String sql ="select * from dest_type";
         db.myPrepareStatement(sql);
         ResultSet rs = db.myExecuteQuery();
         while(rs.next()) {
-        	DEST_TYPE dest_type = new DEST_TYPE();
+        	DestType dest_type = new DestType();
         	dest_type.setId(rs.getInt("id"));
         	dest_type.setDestType(rs.getString("destType"));
         	dest_type.setImg_link(rs.getString("img_link"));
@@ -116,7 +113,6 @@ public class TravelImp implements Travel{
 	    }
 		return destTypeList;
 	}
-
 
 
 	public List<DestinationName> getDestinationName(int idDestType) {
@@ -135,6 +131,7 @@ public class TravelImp implements Travel{
 	                destName.setTypeDest(rs.getInt("typeDest"));
 	                destName.setCity_id(rs.getInt("city_id"));
 	                destName.setCityName(rs.getString("name"));
+	                destName.setImg(rs.getString("img"));
 	                dn.add(destName);
 	            }
 	        } catch (Exception e) {

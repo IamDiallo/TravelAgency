@@ -7,11 +7,11 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import com.travel.webservice.model.Cities;
-import com.travel.webservice.model.Countries;
-import com.travel.webservice.model.DEST_TYPE;
+import com.travel.webservice.model.City;
+import com.travel.webservice.model.Country;
+import com.travel.webservice.model.DestType;
 import com.travel.webservice.model.DestinationName;
-import com.travel.webservice.model.Destinations;
+import com.travel.webservice.model.Destination;
 
 
 @WebService(name = "Travel",targetNamespace = "http://service.webservice.travel.com/")
@@ -19,19 +19,19 @@ public interface Travel {
 
 	@WebMethod(operationName = "getCountry", action = "urn:GetCountry")
 	@WebResult(name = "result")
-	List<Countries> getCountry();
+	List<Country> getCountry();
 	
 	@WebMethod(operationName = "getDestinations", action = "urn:GetDestinations")
 	@WebResult(name = "result")
-	List<DEST_TYPE> getDestinations();
+	List<DestType> getDestinations();
 	
 	@WebMethod(operationName = "getDestinationsByCity", action = "urn:GetDestinationsByCity")
 	@WebResult(name = "result")
-	List<Destinations> getDestinationsByCity(@WebParam(name="idCity") int id);
+	List<Destination> getDestinationsByCity(@WebParam(name="idCity") int id);
 	
 	@WebMethod(operationName = "getCities", action = "urn:GetCities")
 	@WebResult(name = "result")
-	List<Cities> getCities();
+	List<City> getCities();
 	
 	@WebMethod(operationName = "getDestinationName", action = "urn:GetDestinationName")
 	@WebResult(name = "result")

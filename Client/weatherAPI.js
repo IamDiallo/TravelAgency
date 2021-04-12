@@ -1,7 +1,6 @@
       /// OpenWeatherMap API. Do not share it publicly.
       const api = 'cf3b11c7586d99f6b2c42cb25283ccfb'; //Replace with your API
       // const iconImg = document.getElementById('weather-icon');
-      const loc = document.querySelector('#location');
       const tempC = document.querySelector('.c');
       const desc = document.querySelector('.desc');
       const sunriseDOM = document.querySelector('.sunrise');
@@ -33,7 +32,6 @@
             const sunriseGMT = new Date(sunrise * 1000);
             const sunsetGMT = new Date(sunset * 1000);
             
-            loc.textContent = `${place}`;
             desc.textContent = `${description}`;
             tempC.textContent = `${temp.toFixed(2)} °C`;
             sunriseDOM.textContent = `${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}`;
