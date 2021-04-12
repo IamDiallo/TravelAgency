@@ -48,6 +48,7 @@ public class TravelService {
                 dt.setNameDest(rs.getString("nameDest"));
                 dt.setTypeDest(rs.getInt("typeDest"));
                 dt.setDestName(rs.getString("destType"));
+                dt.setImg(rs.getString("img"));
                 cityDest.add(dt);
             }
         } catch (Exception e) {
@@ -119,6 +120,7 @@ public class TravelService {
 	                destName.setTyDest(rs.getInt("typeDest"));
 	                destName.setCity_id(rs.getInt("city_id"));
 	                destName.setCityName(rs.getString("name"));
+	                destName.setImg(rs.getString("img"));
 	                dn.add(destName);
 	            }
 	        } catch (Exception e) {

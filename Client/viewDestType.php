@@ -1,7 +1,5 @@
 <?php 
 	include("traitement.php");
-    $dest_id = $_GET['viewDest'];
-    echo $dest_id;
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +21,9 @@
 		<nav class="link">
 			<h2 class="hidden">navigation</h2>
 			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li class="active"><a href="tour.html">Tours</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li class="active"><a href="tour.php">Tours</a></li>
 				<li><a href="flight.html">Flights</a></li>
-				<li><a href="gallery.html">Gallery</a></li>
 				<li><a href="about.html">About</a></li>
 			</ul>
 		</nav>
@@ -47,10 +44,6 @@
 		<h2>Travel information</h2>
         <div class="row">
         <?php 
-        $param = new stdClass();
-        $param->idDestType = $dest_id;
-        try {
-		$listDestination = $clientSOAP->__soapCall("getDestName", array($param));
 		if (isset($listDestination)) {
 			foreach ($listDestination->result as $listDest){
           ?>
@@ -81,16 +74,45 @@
 					</article>
 				</figcaption>
 			</figure>
-          </div>
-			
+          </div>	
 	<?php
     }
-	  }
-
-    } catch(Exception $e) {
-        var_dump($e);
-    }
-		?>
+	}elseif (isset($listDestination1)) {
+		foreach ($listDestination1->destName as $listDest)
+       	{
+       	?>
+       		<div class="col-6">
+          <figure class="tour">
+			<img src="<?php echo $listDest->img ?>" style="height: 150px" alt="Bangkok for 6 days">
+			<figcaption>
+					<article>
+						<header>
+							<hgroup>
+								<h4 style="margin-left:15px"><?php  echo $listDest->nameDest;?></h4>
+								<!-- <h6 class="sm-hidden">Special for group travelling with no extra cost...</h6> -->
+							</hgroup>
+						</header>
+						<ol class="sm-hidden" style="margin-top:0px">
+							<li><em>Flight</em> Southern Airlines, non-stop</li>
+							<li><em>Date</em> 11/01, 11/05, 11/08...</li>
+						</ol>
+						<div class="buy" style="margin-top:50px">
+							<!-- <div class="price">$<strong>1864</strong> <s>$2980</s></div> -->
+							<div class="book sm-hidden"><a href="###">View Details</a></div>
+						</div>
+						<div class="type"><?php echo   $listDest->cityName; ?></div>
+						<!-- <div class="disc"><span>35%Off</span></div> -->
+						<!-- <footer class="sm-hidden">
+							The special price will end at <time>01/10/2016</time>
+						</footer> -->
+					</article>
+				</figcaption>
+			</figure>
+          </div>	
+    <?php
+		}
+	}
+	?>
         </div>
 		
 		<div class="more">More...</div>
@@ -102,38 +124,35 @@
 <footer id="footer">
 	<div class="top sm-hidden">
 		<div class="column left">
-			<h2>Partnership</h2>
+			<h2>Travel Agency</h2>
 			<hr>
 			<ul>
-				<li><a href="###">YHA China</a></li>
-				<li><a href="###">Qunar Travel</a></li>
-				<li><a href="###">Ali Trip</a></li>
-				<li><a href="###">Youth Travel Service</a></li>
+				<li><a href="###">Discover City</a></li>
+				<li><a href="###">Discover Destinations</a></li>
+				<li><a href="###">Get Weather Info</a></li>
 			</ul>
 		</div>
 		<div class="column mid">
 			<h2>FAQ</h2>
 			<hr>
 			<ul>
-				<li><a href="###">When shall I sign the contract.</a></li>
 				<li><a href="###">How about the discount for children.</a></li>
 				<li><a href="###">What is the best time travel to Australia.</a></li>
 				<li><a href="###">How many kinds of travel insurance.</a></li>
-				<li><a href="###">Can I change the date, is that free.</a></li>
 			</ul>			
 		</div>
 		<div class="column right">
-			<h2>Contact</h2>
+			<h2>Authors</h2>
 			<hr>
 			<ul>
-				<li><a href="###">Email: info@dreamtour.com</a></li>
-				<li><a href="###">Phone: 010-23504668.</a></li>
-				<li><a href="###">Address: 33 Nanjing rd, Beijing, China.</a></li>
+				<li><a href="###">DIALLO Mamadou Bella</a></li>
+				<li><a href="###">DIAWARA Mourtalla Faty</a></li>
+				<li><a href="###">Design Inspired by Dream Tour</a></li>
 			</ul>			
 		</div>
 	</div>
 	<div class="clearfix"></div>
-	<div class="bottom">Copyright &copy; Dream Tour 2016 | Developed by Bright</div>
+	<div class="bottom">Web Services University Project</div>
 </footer>
 <!-- footer end -->
 </body>
