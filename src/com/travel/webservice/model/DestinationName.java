@@ -1,5 +1,8 @@
 package com.travel.webservice.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="DestinationName")
 public class DestinationName {
    int id;
    String nameDest;
@@ -12,7 +15,6 @@ public class DestinationName {
 		super();
 	}
 	
-	
 
 	public DestinationName(int id, String nameDest, String cityName, int typeDest, int city_id, String img) {
 		super();
@@ -23,7 +25,6 @@ public class DestinationName {
 		this.city_id = city_id;
 		this.img = img;
 	}
-
 
 
 	public int getId() {

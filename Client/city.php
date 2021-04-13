@@ -22,8 +22,6 @@
 			<ul>
 				<li><a href="index.php">Home</a></li>
 				<li><a href="tour.php">Tours</a></li>
-				<li><a href="flight.html">Flights</a></li>
-				<li><a href="about.html">About</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -63,43 +61,6 @@
     			</div>
 			</div>
 		</div>
-		<div class="side hot">
-			<h2>Hot Deals</h2>
-			<div class="figure">
-				<figure>
-					<img src="img/hot1.jpg" alt="Bangkok for 6 days">
-					<figcaption>Bangkok for 6 days</figcaption>
-				</figure>
-				<figure>
-					<img src="img/hot2.jpg" alt="Maldives for 4 days">
-					<figcaption>Maldives for 4 days</figcaption>
-				</figure>
-				<figure>
-					<img src="img/hot3.jpg" alt="Xian for 5 days">
-					<figcaption>Xian for 5 days</figcaption>
-				</figure>
-				<figure>
-					<img src="img/hot4.jpg" alt="Tokyo for 8 days">
-					<figcaption>Tokyo for 8 days</figcaption>
-				</figure>
-				<figure>
-					<img src="img/hot5.jpg" alt="Australia for 7 days">
-					<figcaption>Australia for 7 days</figcaption>
-				</figure>
-				<figure>
-					<img src="img/hot6.jpg" alt="Silk Road for 4 days">
-					<figcaption>Silk Road for 4 days</figcaption>
-				</figure>
-				<figure>
-					<img src="img/hot7.jpg" alt="Europe for 9 days">
-					<figcaption>Europe for 9 days</figcaption>
-				</figure>
-				<figure>
-					<img src="img/hot8.jpg" alt="HongKong for 3 days">
-					<figcaption>HongKong for 3 days</figcaption>
-				</figure>
-			</div>
-		</div>
 		<div class="side box">
 			<h2>Tools</h2>
 			<div class="tool">
@@ -116,7 +77,6 @@
 		<section>
 			<h2>Explore the Beauty of <?php echo $cityName?></h2>
 			    <?php 
-
 			      if (isset($destinationsCity)) 
 			      {
 			        foreach ($destinationsCity->result as $destCity)

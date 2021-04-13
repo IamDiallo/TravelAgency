@@ -23,8 +23,6 @@
 			<ul>
 				<li><a href="index.php">Home</a></li>
 				<li class="active"><a href="tour.php">Tours</a></li>
-				<li><a href="flight.html">Flights</a></li>
-				<li><a href="about.html">About</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -49,28 +47,18 @@
           ?>
           <div class="col-6">
           <figure class="tour">
-			<img src="img/tour1.jpg" alt="Bangkok for 6 days">
+			<img src="<?php echo $listDest->img ?>" alt="Bangkok for 6 days">
 			<figcaption>
 					<article>
 						<header>
 							<hgroup>
 								<h4 style="margin-left:15px"><?php  echo $listDest->nameDest;?></h4>
-								<!-- <h6 class="sm-hidden">Special for group travelling with no extra cost...</h6> -->
 							</hgroup>
 						</header>
-						<ol class="sm-hidden" style="margin-top:0px">
-							<li><em>Flight</em> Southern Airlines, non-stop</li>
-							<li><em>Date</em> 11/01, 11/05, 11/08...</li>
-						</ol>
-						<div class="buy" style="margin-top:50px">
-							<!-- <div class="price">$<strong>1864</strong> <s>$2980</s></div> -->
-							<div class="book sm-hidden"><a href="###">View Details</a></div>
+						<div class="buy" style="margin-top:40px">
+							<!-- <div class="book sm-hidden"><a href="###">View Details</a></div> -->
 						</div>
 						<div class="type"><?php echo   $listDest->cityName; ?></div>
-						<!-- <div class="disc"><span>35%Off</span></div> -->
-						<!-- <footer class="sm-hidden">
-							The special price will end at <time>01/10/2016</time>
-						</footer> -->
 					</article>
 				</figcaption>
 			</figure>
@@ -89,22 +77,14 @@
 						<header>
 							<hgroup>
 								<h4 style="margin-left:15px"><?php  echo $listDest->nameDest;?></h4>
-								<!-- <h6 class="sm-hidden">Special for group travelling with no extra cost...</h6> -->
 							</hgroup>
 						</header>
 						<ol class="sm-hidden" style="margin-top:0px">
-							<li><em>Flight</em> Southern Airlines, non-stop</li>
-							<li><em>Date</em> 11/01, 11/05, 11/08...</li>
 						</ol>
-						<div class="buy" style="margin-top:50px">
-							<!-- <div class="price">$<strong>1864</strong> <s>$2980</s></div> -->
-							<div class="book sm-hidden"><a href="###">View Details</a></div>
+						<div class="buy" style="margin-top:40px">
+							<!-- <div class="book sm-hidden"><a href="###">View Details</a></div> -->
 						</div>
 						<div class="type"><?php echo   $listDest->cityName; ?></div>
-						<!-- <div class="disc"><span>35%Off</span></div> -->
-						<!-- <footer class="sm-hidden">
-							The special price will end at <time>01/10/2016</time>
-						</footer> -->
 					</article>
 				</figcaption>
 			</figure>

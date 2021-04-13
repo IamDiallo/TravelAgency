@@ -73,6 +73,19 @@ public class TravelResource {
 	    		  .build();
 	 }
 	 
+	 // return all destinations types
+	 @Path("/destGroups")
+	 @GET
+	 @Produces(MediaType.APPLICATION_XML)
+	 public Response  getDestGroup(){
+		 List<DestGroup> destGroup = travelService.getDestGroup();
+		 GenericEntity<List<DestGroup>> entities = new GenericEntity<List<DestGroup>>(destGroup){};
+		 
+		 return Response.status(Response.Status.OK)
+	    		  .entity(entities)
+	    		  .build();
+	 }
+	 
 	 
 	 @Path("destinations/{id_typeDest}")
 	 @GET

@@ -10,6 +10,9 @@
 	if (isset($_GET['viewDest'])) {
 		$dest_id = $_GET['viewDest'];
 	}
+	if (isset($_GET['view'])) {
+		$dest_id = $_GET['view'];
+	}
 	
 	
 	$wsdl = 'http://localhost:8080/com.travel.webservice/services/TravelPort?wsdl';
@@ -23,6 +26,7 @@
 		$destinations = $clientSOAP->__soapCall("getDestinations",array());
 
 	    $cities = $clientSOAP->__soapCall("getCities",array());
+		$destGroup = $clientSOAP->__soapCall("getDestGroup",array());
 	    // Set request params
 	    $param = new stdClass();
 	    $param->idDestType = 1;
@@ -50,7 +54,8 @@
 			}
 
 			$destinations1 = new SimpleXMLElement(file_get_contents($url.'typesDests'));
-
+            $destGroup1 = new SimpleXMLElement(file_get_contents($url.'destGroups'));
+			// print_r($destGroup1);
 			if (isset($dest_id)) {
 				
 				$listDestination1 = new SimpleXMLElement(file_get_contents($url.'destinations/'.$dest_id));

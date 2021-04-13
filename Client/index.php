@@ -25,9 +25,6 @@
 			<ul>
 				<li class="active"><a href="index.php">Home</a></li>
 				<li><a href="tour.php">Tours</a></li>
-				<li><a href="flight.html">Flights</a></li>
-				<li><a href="gallery.html">Gallery</a></li>
-				<li><a href="about.html">About</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -63,8 +60,7 @@
 							<h4><strong class="title"><?php echo $cit->name; ?></strong></h4> 
 						</div>
 						<div>
-							<em class="sat">Rating 87%</em>
-							<span class="price">From $ <strong>698</strong></span>
+							<span class="price">From $ <strong><?php echo $cit->price;?></strong></span>
 						</div>
 					<div class="type"><?php  echo $cit->countryName;?></div>
 					<input type="hidden" name="lat" value="<?php echo $cit->latitude;?>">
@@ -77,7 +73,7 @@
 				</form>
 		<?php	}
 		}elseif(isset($cities1)){
-			foreach ($cities1->city as $cit){ ?>
+			foreach ($cities1->City as $cit){ ?>
 				<form method="post" action="city.php">
 				<figure>
 					<img src="<?php echo  $cit->cityImg ?>" style="height: 200px; width: 100%;" alt="Bangkok - Pattaya for 6 days" style="height:250px">
@@ -87,7 +83,7 @@
 						</div>
 						<div>
 							<em class="sat">Rating 87%</em>
-							<span class="price">From $ <strong>698</strong></span>
+							<span class="price">From $ <strong><?php echo $cit->price; ?></strong></span>
 						</div>
 					<div class="type"><?php  echo $cit->countryName;?></div>
 					<input type="hidden" name="lat" value="<?php echo $cit->latitude;?>">

@@ -9,6 +9,7 @@ import javax.jws.WebService;
 
 import com.travel.webservice.model.City;
 import com.travel.webservice.model.Country;
+import com.travel.webservice.model.DestGroup;
 import com.travel.webservice.model.DestType;
 import com.travel.webservice.model.DestinationName;
 import com.travel.webservice.model.Destination;
@@ -37,6 +38,8 @@ public interface Travel {
 	@WebResult(name = "result")
 	List<DestinationName> getDestinationName(@WebParam(name="idDestType") int idDestType);
 	
-
+	@WebMethod(operationName = "getDestGroup", action = "urn:GetDestGroup")
+	@WebResult(name = "result")
+	List<DestGroup> getDestGroup();
 }
 

@@ -2,7 +2,7 @@ package com.travel.webservice.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="DEST_TYPE")
+@XmlRootElement(name="DestType")
 public class DestType {
 	 int id;
 	 String destType;

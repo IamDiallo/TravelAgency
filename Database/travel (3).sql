@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2021 at 04:46 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Apr 13, 2021 at 03:42 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.16
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `travel`
@@ -26,43 +27,42 @@ SET time_zone = "+00:00";
 -- Table structure for table `cities`
 --
 
-CREATE TABLE IF NOT EXISTS `cities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cities` (
+  `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `country_id` int(11) NOT NULL,
   `longitude` float DEFAULT NULL,
   `latitude` float DEFAULT NULL,
   `cityImg` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_Country` (`country_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=22 ;
+  `esti_price` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cities`
 --
 
-INSERT INTO `cities` (`id`, `name`, `country_id`, `longitude`, `latitude`, `cityImg`) VALUES
-(1, 'Paris', 1, 2.3522, 48.8566, 'img/paris.png'),
-(2, 'Lyon', 1, 4.8357, 45.764, 'img/lyon.png'),
-(3, 'Marseille', 1, 5.3698, 43.2965, 'img/marseille.png'),
-(4, 'Venice', 2, 12.3155, 45.4408, 'img/venice.jpeg'),
-(5, 'Roma', 2, 12.4964, 41.9028, 'img/roma.png'),
-(6, 'Milan', 2, 9.19, 45.4642, 'img/milan.png'),
-(7, 'Lisbon', 3, 9.1393, 38.7223, 'img/lisbon.jpeg'),
-(8, 'Tavira', 3, 7.643, 37.1336, 'img/tavira.jpeg'),
-(9, 'Evora', 3, 7.9135, 38.5714, 'img/evora.jpeg'),
-(10, 'Berlin', 4, 13.405, 52.52, 'img/berlin.jpeg'),
-(11, 'Munich', 4, 11.582, 48.1351, 'img/munich.jpeg'),
-(12, 'Hamburg', 4, 9.9937, 53.5511, 'img/hamburg.jpeg'),
-(13, 'Barcelona', 5, 2.1734, 41.3851, 'img/barcelona.jpeg'),
-(14, 'Madrid', 5, 3.7038, 40.4168, 'img/madrid.jpeg'),
-(15, 'Seville', 5, 5.9845, 37.3891, 'img/seville.jpeg'),
-(16, 'Bruges', 6, 3.2247, 51.2093, 'img/bruges.jpeg'),
-(17, 'brussels', 6, 4.3517, 50.8503, 'img/brussels.jpeg'),
-(18, 'Ghent', 6, 3.7174, 51.0543, 'img/ghent.jpeg'),
-(19, 'London', 7, -0.118092, 51.5099, 'img/london.jpeg'),
-(20, 'Manchester', 7, 2.2426, 53.4808, 'img/manchester.jpeg'),
-(21, 'Liverpool', 7, 2.9916, 53.4084, 'img/liverpool.jpeg');
+INSERT INTO `cities` (`id`, `name`, `country_id`, `longitude`, `latitude`, `cityImg`, `esti_price`) VALUES
+(1, 'Paris', 1, 2.3522, 48.8566, 'img/paris.png', 1050),
+(2, 'Lyon', 1, 4.8357, 45.764, 'img/lyon.png', 800),
+(3, 'Marseille', 1, 5.3698, 43.2965, 'img/marseille.png', 750),
+(4, 'Venice', 2, 12.3155, 45.4408, 'img/venice.jpeg', 600),
+(5, 'Roma', 2, 12.4964, 41.9028, 'img/roma.png', 750),
+(6, 'Milan', 2, 9.19, 45.4642, 'img/milan.png', 850),
+(7, 'Lisbon', 3, 9.1393, 38.7223, 'img/lisbon.jpeg', 305),
+(8, 'Tavira', 3, 7.643, 37.1336, 'img/tavira.jpeg', 200),
+(9, 'Evora', 3, 7.9135, 38.5714, 'img/evora.jpeg', 400),
+(10, 'Berlin', 4, 13.405, 52.52, 'img/berlin.jpeg', 1070),
+(11, 'Munich', 4, 11.582, 48.1351, 'img/munich.jpeg', 800),
+(12, 'Hamburg', 4, 9.9937, 53.5511, 'img/hamburg.jpeg', 650),
+(13, 'Barcelona', 5, 2.1734, 41.3851, 'img/barcelona.jpeg', 870),
+(14, 'Madrid', 5, 3.7038, 40.4168, 'img/madrid.jpeg', 840),
+(15, 'Seville', 5, 5.9845, 37.3891, 'img/seville.jpeg', 760),
+(16, 'Bruges', 6, 3.2247, 51.2093, 'img/bruges.jpeg', 304),
+(17, 'brussels', 6, 4.3517, 50.8503, 'img/brussels.jpeg', 890),
+(18, 'Ghent', 6, 3.7174, 51.0543, 'img/ghent.jpeg', 380),
+(19, 'London', 7, -0.118092, 51.5099, 'img/london.jpeg', 1500),
+(20, 'Manchester', 7, 2.2426, 53.4808, 'img/manchester.jpeg', 940),
+(21, 'Liverpool', 7, 2.9916, 53.4084, 'img/liverpool.jpeg', 790);
 
 -- --------------------------------------------------------
 
@@ -70,11 +70,10 @@ INSERT INTO `cities` (`id`, `name`, `country_id`, `longitude`, `latitude`, `city
 -- Table structure for table `countries`
 --
 
-CREATE TABLE IF NOT EXISTS `countries` (
-  `id_country` int(11) NOT NULL AUTO_INCREMENT,
-  `countryName` varchar(30) NOT NULL,
-  PRIMARY KEY (`id_country`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=8 ;
+CREATE TABLE `countries` (
+  `id_country` int(11) NOT NULL,
+  `countryName` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `countries`
@@ -95,22 +94,19 @@ INSERT INTO `countries` (`id_country`, `countryName`) VALUES
 -- Table structure for table `destinations`
 --
 
-CREATE TABLE IF NOT EXISTS `destinations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `destinations` (
+  `destination_id` int(11) NOT NULL,
   `nameDest` varchar(30) NOT NULL,
   `typeDest` int(11) NOT NULL,
   `city_id` int(11) NOT NULL,
-  `img` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_destinations` (`typeDest`),
-  KEY `fk_cities` (`city_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=126 ;
+  `img` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `destinations`
 --
 
-INSERT INTO `destinations` (`id`, `nameDest`, `typeDest`, `city_id`, `img`) VALUES
+INSERT INTO `destinations` (`destination_id`, `nameDest`, `typeDest`, `city_id`, `img`) VALUES
 (1, 'Eiffel Tower', 1, 1, 'img/destination/EiffelTower.jpg'),
 (2, 'Arc de Triomphe', 1, 1, 'img/destination/ArcdeTriomphe.jpg'),
 (3, 'Cathedrale Notre-Dame ', 1, 1, 'img/destination/CathedraleNotreDame.jpg'),
@@ -213,11 +209,11 @@ INSERT INTO `destinations` (`id`, `nameDest`, `typeDest`, `city_id`, `img`) VALU
 (105, 'Dulle Griet', 1, 18, 'img/destination/DulleGriet.jpg'),
 (106, 'Parc Muink', 2, 18, 'img/destination/ParcMuink.jpg'),
 (109, 'London Tower Bridge', 1, 19, 'img/destination/LondonTowerBridge.jpg'),
-(110, 'St James''s Park', 2, 19, 'img/destination/StJamessPark.jpg'),
+(110, 'St James\'s Park', 2, 19, 'img/destination/StJamessPark.jpg'),
 (111, 'Monster Mountains', 3, 19, 'img/destination/MonsterMountains.jpg'),
-(112, 'Betsom''s Hill', 3, 19, 'img/destination/BetsomsHill.jpg'),
+(112, 'Betsom\'s Hill', 3, 19, 'img/destination/BetsomsHill.jpg'),
 (113, 'Hyde Park', 2, 19, 'img/destination/HydePark.jpg'),
-(114, 'Queen Victoria''s Statue', 1, 20, 'img/destination/QueenVictoriasStatue.jpg'),
+(114, 'Queen Victoria\'s Statue', 1, 20, 'img/destination/QueenVictoriasStatue.jpeg'),
 (115, 'Albert Memorial', 1, 20, 'img/destination/AlbertMemorial.jpg'),
 (116, 'Ainsdale Beach', 4, 20, 'img/destination/AinsdaleBeach.jpg'),
 (117, 'Platt Fields Park', 2, 20, 'img/destination/PlattFieldsPark.jpg'),
@@ -234,12 +230,11 @@ INSERT INTO `destinations` (`id`, `nameDest`, `typeDest`, `city_id`, `img`) VALU
 -- Table structure for table `dest_type`
 --
 
-CREATE TABLE IF NOT EXISTS `dest_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dest_type` (
+  `id` int(11) NOT NULL,
   `destType` varchar(30) NOT NULL,
-  `img_link` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=8 ;
+  `img_link` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dest_type`
@@ -253,6 +248,65 @@ INSERT INTO `dest_type` (`id`, `destType`, `img_link`) VALUES
 (5, 'Zoo', 'img/zoo/zoo.jpeg'),
 (6, 'Cave', 'img/cave/cave.jpg'),
 (7, 'Forest', 'img/forest/forest.jpg');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cities`
+--
+ALTER TABLE `cities`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_Country` (`country_id`);
+
+--
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id_country`);
+
+--
+-- Indexes for table `destinations`
+--
+ALTER TABLE `destinations`
+  ADD PRIMARY KEY (`destination_id`),
+  ADD KEY `fk_destinations` (`typeDest`),
+  ADD KEY `fk_cities` (`city_id`);
+
+--
+-- Indexes for table `dest_type`
+--
+ALTER TABLE `dest_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cities`
+--
+ALTER TABLE `cities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id_country` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `destinations`
+--
+ALTER TABLE `destinations`
+  MODIFY `destination_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+
+--
+-- AUTO_INCREMENT for table `dest_type`
+--
+ALTER TABLE `dest_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -270,6 +324,7 @@ ALTER TABLE `cities`
 ALTER TABLE `destinations`
   ADD CONSTRAINT `fk_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`),
   ADD CONSTRAINT `fk_destinations` FOREIGN KEY (`typeDest`) REFERENCES `dest_type` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

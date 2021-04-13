@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import travels.management.web.data.*;
 
 public class TravelService {
@@ -73,6 +74,7 @@ public class TravelService {
                 ct.setName(rs.getString("name"));
                 ct.setCountryName(rs.getString("countryName"));
                 ct.setCityImg(rs.getString("cityImg"));
+                ct.setPrice(rs.getFloat("esti_price"));
                 
                 cityType.add(ct);
             }
@@ -127,6 +129,30 @@ public class TravelService {
 	            e.printStackTrace();
 	        }
 	        return dn;
+	}
+	
+	// get all destination group them by cities and count the numnber of destinations for each city
+	public List<DestGroup> getDestGroup() {
+		List<DestGroup> destTypeGroup = new ArrayList<DestGroup>();
+		try {
+        String sql ="SELECT count(destination_id) as num_dest, destination_id, cities.name, cities.longitude, cities.latitude FROM destinations "
+        		+ "JOIN dest_type on destinations.typeDest = dest_type.id JOIN cities on destinations.city_id =cities.id group by cities.name";
+        db.myPrepareStatement(sql);
+        ResultSet rs = db.myExecuteQuery();
+        while(rs.next()) {
+        	DestGroup dest = new DestGroup();
+        	dest.setDestiId(rs.getInt("destination_id"));
+        	dest.setCityName(rs.getString("name"));
+        	dest.setDestCount(rs.getInt("num_dest"));
+        	dest.setLongitude(rs.getFloat("longitude"));
+        	dest.setLatitude(rs.getFloat("latitude"));
+        	destTypeGroup.add(dest);
+        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.print(e.getMessage());
+	    }
+		return destTypeGroup;
 	}
     
 }

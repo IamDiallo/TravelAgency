@@ -2,7 +2,7 @@ package com.travel.webservice.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="Destinations")
+@XmlRootElement(name="Destination")
 public class Destination {
 	int id;
 	String nameDest;

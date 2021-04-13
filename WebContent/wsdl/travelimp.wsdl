@@ -5,16 +5,20 @@
   <import namespace="http://service.webservice.travel.com/" schemaLocation="travelimp_schema1.xsd"/>
 </schema>
   </wsdl:types>
+  <wsdl:message name="getDestGroupResponse">
+    <wsdl:part name="parameters" element="tns:getDestGroupResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getDestinationName">
     <wsdl:part name="parameters" element="tns:getDestinationName">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getDestinationsByCityResponse">
-    <wsdl:part name="parameters" element="tns:getDestinationsByCityResponse">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getCountry">
     <wsdl:part name="parameters" element="tns:getCountry">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDestinationsByCityResponse">
+    <wsdl:part name="parameters" element="tns:getDestinationsByCityResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getDestinationsResponse">
@@ -23,6 +27,10 @@
   </wsdl:message>
   <wsdl:message name="getDestinationsByCity">
     <wsdl:part name="parameters" element="tns:getDestinationsByCity">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDestGroup">
+    <wsdl:part name="parameters" element="tns:getDestGroup">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getCities">
@@ -45,20 +53,7 @@
     <wsdl:part name="parameters" element="tns:getDestinations">
     </wsdl:part>
   </wsdl:message>
-  
   <wsdl:portType name="Travel">
-    <wsdl:operation name="getDestinationsByCity">
-      <wsdl:input name="getDestinationsByCity" message="tns:getDestinationsByCity">
-    </wsdl:input>
-      <wsdl:output name="getDestinationsByCityResponse" message="tns:getDestinationsByCityResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getCities">
-      <wsdl:input name="getCities" message="tns:getCities">
-    </wsdl:input>
-      <wsdl:output name="getCitiesResponse" message="tns:getCitiesResponse">
-    </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="getDestinationName">
       <wsdl:input name="getDestinationName" message="tns:getDestinationName">
     </wsdl:input>
@@ -71,6 +66,24 @@
       <wsdl:output name="getCountryResponse" message="tns:getCountryResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getDestinationsByCity">
+      <wsdl:input name="getDestinationsByCity" message="tns:getDestinationsByCity">
+    </wsdl:input>
+      <wsdl:output name="getDestinationsByCityResponse" message="tns:getDestinationsByCityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDestGroup">
+      <wsdl:input name="getDestGroup" message="tns:getDestGroup">
+    </wsdl:input>
+      <wsdl:output name="getDestGroupResponse" message="tns:getDestGroupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCities">
+      <wsdl:input name="getCities" message="tns:getCities">
+    </wsdl:input>
+      <wsdl:output name="getCitiesResponse" message="tns:getCitiesResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getDestinations">
       <wsdl:input name="getDestinations" message="tns:getDestinations">
     </wsdl:input>
@@ -80,24 +93,6 @@
   </wsdl:portType>
   <wsdl:binding name="TravelServiceSoapBinding" type="tns:Travel">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="getDestinationsByCity">
-      <soap:operation soapAction="urn:GetDestinationsByCity" style="document"/>
-      <wsdl:input name="getDestinationsByCity">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getDestinationsByCityResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getCities">
-      <soap:operation soapAction="urn:GetCities" style="document"/>
-      <wsdl:input name="getCities">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getCitiesResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="getDestinationName">
       <soap:operation soapAction="urn:GetDestinationName" style="document"/>
       <wsdl:input name="getDestinationName">
@@ -116,6 +111,33 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getDestinationsByCity">
+      <soap:operation soapAction="urn:GetDestinationsByCity" style="document"/>
+      <wsdl:input name="getDestinationsByCity">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDestinationsByCityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDestGroup">
+      <soap:operation soapAction="urn:GetDestGroup" style="document"/>
+      <wsdl:input name="getDestGroup">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDestGroupResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCities">
+      <soap:operation soapAction="urn:GetCities" style="document"/>
+      <wsdl:input name="getCities">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCitiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getDestinations">
       <soap:operation soapAction="urn:GetDestinations" style="document"/>
       <wsdl:input name="getDestinations">
@@ -128,7 +150,7 @@
   </wsdl:binding>
   <wsdl:service name="TravelService">
     <wsdl:port name="TravelPort" binding="tns:TravelServiceSoapBinding">
-      <soap:address location="http://localhost:8080/com.travel.webservice/services"/>
+      <soap:address location="http://localhost:8080/com.travel.webservice/services/TravelPort"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
