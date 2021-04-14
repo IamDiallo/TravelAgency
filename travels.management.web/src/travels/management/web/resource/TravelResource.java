@@ -1,11 +1,11 @@
 package travels.management.web.resource;
 
+import java.net.URI;
 import java.util.List;
 
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-
 
 import travels.management.web.data.*;
 import travels.management.web.service.*;
@@ -15,8 +15,24 @@ public class TravelResource {
 	
 	TravelService travelService = new TravelService();
 	
-	 @Context
-	 UriInfo uriInfo;
+	@Context
+	UriInfo uriInfo;
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_XML)
+	public Response  addDest(Destination dest)  {
+	    Destination destination = travelService.addDest(dest);
+	    if(destination == null) {
+	      return Response.status(Response.Status.BAD_REQUEST).build();
+	    }
+	    URI uri = uriInfo.getRequestUri();
+	    String newUri = uri.getPath() + "/" + destination.getId();
+	    return Response.status(Response.Status.CREATED)
+	                   .contentLocation(uri.resolve(newUri))
+	                   .build();
+}
 	 
 	 // return all countries
 	 @Path("/countries")
@@ -98,6 +114,32 @@ public class TravelResource {
 	    		  .entity(entities)
 	    		  .build();
 	 }
+	 
+	 
+	 @GET
+	 @Produces(MediaType.APPLICATION_XML)
+	 public Response  getAllDest(){
+		 List<DestinationName> destinations = travelService.getAllDest();
+		 GenericEntity<List<DestinationName>> entities = new GenericEntity<List<DestinationName>>(destinations){};
+	      
+	      return Response.status(Response.Status.OK)
+	    		  .entity(entities)
+	    		  .build();
+	 }
+	 
+	 
+	 @DELETE
+	 @Path("/{id}")
+	 @Produces(MediaType.APPLICATION_XML)
+	 public Response deleteDest(@PathParam("id") int id) { 
+	    if(travelService.deleteDest(id) == false) {
+	      return Response.status(Response.Status.NOT_FOUND).build();
+	    }
+	    return Response.status(Response.Status.OK).build();
+	  }
+	 
+	 
+	
 	 
 	 
 	 

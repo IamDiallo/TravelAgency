@@ -14,7 +14,6 @@ public class TravelService {
 	
 	// get the list of all countries
 	public List<Country> getCountries() {  
-		// TODO Auto-generated method stub
 		List<Country> countries = new ArrayList<Country>();
 		try {
         String sql ="select * from countries";
@@ -48,7 +47,7 @@ public class TravelService {
                 dt.setId(rs.getInt("id"));
                 dt.setNameDest(rs.getString("nameDest"));
                 dt.setTypeDest(rs.getInt("typeDest"));
-                dt.setDestName(rs.getString("destType"));
+                dt.setCityDest(rs.getInt("city_id"));
                 dt.setImg(rs.getString("img"));
                 cityDest.add(dt);
             }
@@ -154,5 +153,63 @@ public class TravelService {
 	    }
 		return destTypeGroup;
 	}
+	
+	// add a destination
+	public Destination addDest(Destination dest) {
+		try {
+	        String sql ="INSERT INTO destinations(nameDest, typeDest, city_id, img) VALUES (?, ?, ?, ?)";
+	        db.myPrepareStatement(sql);
+	        Object[] parameters = {dest.getNameDest(), dest.getTypeDest(), dest.getCityDest(), dest.getImg()};
+	        db.addParameters(parameters);
+	        db.myExecuteUpdate();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        System.out.print(e.getMessage());
+		    }
+		return dest;
+	
+	}
+	
+	// get All destination
+	public List<DestinationName> getAllDest() {
+		List<DestinationName> dn  = new ArrayList<DestinationName>();
+		 try {
+	            String sql ="SELECT * FROM destinations join dest_type on destinations.typeDest = dest_type.id JOIN cities on destinations.city_id =cities.id";
+	            db.myPrepareStatement(sql);
+	            ResultSet rs = db.myExecuteQuery();
+	            while(rs.next()) {
+	                DestinationName destName = new DestinationName();
+	                destName.setId(rs.getInt("destination_id"));
+	                destName.setNameDest(rs.getString("nameDest"));
+	                destName.setNameTypeDest(rs.getString("destType"));
+	                destName.setTyDest(rs.getInt("typeDest"));
+	                destName.setCity_id(rs.getInt("city_id"));
+	                destName.setCityName(rs.getString("name"));
+	                destName.setImg(rs.getString("img"));
+	                dn.add(destName);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return dn;
+	}
+	
+	// Delete a destination
+	public boolean deleteDest(int id) {
+		try {
+	        String sql ="DELETE FROM destinations WHERE destination_id = ?";
+	        db.myPrepareStatement(sql);
+	        Object[] parameters = {id};
+	        db.addParameters(parameters);
+	        db.myExecuteUpdate();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        System.out.print(e.getMessage());
+		    }
+		return true;
+	
+	}
+	
+	
     
 }

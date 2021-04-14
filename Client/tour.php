@@ -135,6 +135,7 @@
 			<h2>Travel Agency</h2>
 			<hr>
 			<ul>
+				<li><a href="admin.php">Admin</a></li>
 				<li><a href="###">Discover City</a></li>
 				<li><a href="###">Discover Destinations</a></li>
 				<li><a href="###">Get Weather Info</a></li>

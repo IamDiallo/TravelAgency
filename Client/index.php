@@ -1,7 +1,5 @@
 <?php 
-	echo "<div>";
 	include("traitement.php");
-	echo "</div>";
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,18 +105,19 @@
 			<h2>Travel Agency</h2>
 			<hr>
 			<ul>
-				<li><a href="###">Discover City</a></li>
-				<li><a href="###">Discover Destinations</a></li>
-				<li><a href="###">Get Weather Info</a></li>
+				<li><a href="admin.php">Admin</a></li>
+				<li><a href="#">Discover City</a></li>
+				<li><a href="#">Discover Destinations</a></li>
+				<li><a href="#">Get Weather Info</a></li>
 			</ul>
 		</div>
 		<div class="column mid">
 			<h2>FAQ</h2>
 			<hr>
 			<ul>
-				<li><a href="###">How about the discount for children.</a></li>
-				<li><a href="###">What is the best time travel to Australia.</a></li>
-				<li><a href="###">How many kinds of travel insurance.</a></li>
+				<li><a href="#">How about the discount for children.</a></li>
+				<li><a href="#">What is the best time travel to Australia.</a></li>
+				<li><a href="#">How many kinds of travel insurance.</a></li>
 			</ul>			
 		</div>
 		<div class="column right">

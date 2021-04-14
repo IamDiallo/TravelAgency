@@ -7,6 +7,7 @@ public class DestinationName {
 	int id;
 	String nameDest;
 	String cityName;
+	String nameTypeDest;
 	int tyDest;
 	int city_id;
 	String img;
@@ -14,19 +15,19 @@ public class DestinationName {
 	public DestinationName() {
 		super();
 	}
-	
-	
-	
-	public DestinationName(int id, String nameDest, String cityName, int tyDest, int city_id, String img) {
+
+
+	public DestinationName(int id, String nameDest, String cityName, String nameTypeDest, int tyDest, int city_id,
+			String img) {
 		super();
 		this.id = id;
 		this.nameDest = nameDest;
 		this.cityName = cityName;
+		this.nameTypeDest = nameTypeDest;
 		this.tyDest = tyDest;
 		this.city_id = city_id;
 		this.img = img;
 	}
-
 
 
 	public int getId() {
@@ -98,6 +99,18 @@ public class DestinationName {
 	public void setImg(String img) {
 		this.img = img;
 	}
+
+
+	public String getNameTypeDest() {
+		return nameTypeDest;
+	}
+
+
+	public void setNameTypeDest(String nameTypeDest) {
+		this.nameTypeDest = nameTypeDest;
+	}
+	
+	
 
 
 }
