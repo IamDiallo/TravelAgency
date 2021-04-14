@@ -1,19 +1,19 @@
 <?php 
-	/* Test d'appel a un WEBService */
+	/* check if the post variable is not empty if not empty iniatialise the city attribut latitude, longitude...*/
 	if(isset($_POST['donnee'])){
 	 	$lat = $_POST['lat'];
 	  	$long = $_POST['long'];
 	 	$cityId = $_POST['cityId'];
 	  	$cityName = $_POST['cityName'];
 	}
-	 
+	/*check of get variable is not empty */
 	if (isset($_GET['viewDest'])) {
-		$dest_id = $_GET['viewDest'];
+		$dest_id = $_GET['viewDest']; // initialise the destination id
 	}
 	if (isset($_GET['view'])) {
 		$dest_id = $_GET['view'];
 	}
-
+    /*check of post variable is not empty */
 	if (isset($_POST['add'])) {
 		$image = 'img/destination/'.$_FILES['mon_image']['name'];
 		$idCity = $_POST['city'];
@@ -21,39 +21,46 @@
 		$name = $_POST['name'];
 	}
 	
-	
+	// get the wdsl url 
 	$wsdl = 'http://localhost:8080/com.travel.webservice/services/TravelPort?wsdl';
+	// set the wdsl cache to none
 	$options = array('cache_wsdl' => WSDL_CACHE_NONE);
 
+	// if the jaxws service is avaialble use the  jaxws service 
 	try {
+		// instantiate a Soap client and pass it the wdsl url and the options
 		$clientSOAP = new SoapClient($wsdl, $options);
-
+        
+		// call the webservice and specify the operation that we want
 		$countries = $clientSOAP->__soapCall("getCountry",array());
 
 		$destinations = $clientSOAP->__soapCall("getDestinations",array());
 
 	    $cities = $clientSOAP->__soapCall("getCities",array());
 		$destGroup = $clientSOAP->__soapCall("getDestGroup",array());
-	    // Set request params
-	    $param = new stdClass();
-	    $param->idDestType = 1;
-	   	$listDestination = $clientSOAP->__soapCall("getDestinationName", array($param));
 	    
+		// check if the cityId is not empty then call the webservice 
     	if (isset($cityId)) {
+			 // Set request params
 			$paramCity = new stdClass();
 			$paramCity->idCity = $cityId;
+			// specify the operation and pass the parameter
 			$destinationsCity = $clientSOAP->__soapCall("getDestinationsByCity",array($paramCity));
 		}
-
+		// check if the dest_id is not empty then call the webservice 
 		if (isset($dest_id)) {
+			 // Set request params
 			$param = new stdClass();
 	        $param->idDestType = $dest_id;
+			// specify the operation and pass the parameter
 			$listDestination = $clientSOAP->__soapCall("getDestinationName", array($param));
 		}
 			
-	} catch (SoapFault $fault) {
-		//trigger_error("SOAP Fault: (faultcode: {$fault->faultcode}, faultstring: {$fault->faultstring})", E_USER_ERROR);
+	} 
+	// if jaxws is not available then use jaxrs
+	catch (SoapFault $fault) {
 		try {
+			// get the service url
 			$url = 'http://localhost:8080/travels.management.web/api/travels'; 
 			$cities1 = new SimpleXMLElement(file_get_contents($url.'/cities'));
 			if (isset($cityId)) {
@@ -117,16 +124,17 @@
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
 			$resp = curl_exec($curl);
+			
 			curl_close($curl);
 			$AllDest = new SimpleXMLElement($resp);
 			
 			if (isset($_GET['idDest'])) {
 				$idDest = $_GET['idDest'];
 				$url = $url.'/'.$idDest;
-
+                #echo $url;
 				$curl = curl_init($url);
 				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_DELETE, true);
+				curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 				//for debug only!
@@ -135,7 +143,7 @@
 
 				$resp = curl_exec($curl);
 				curl_close($curl);
-				var_dump($resp);
+				#var_dump($resp);
 			}
 
 

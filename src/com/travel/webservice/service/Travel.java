@@ -14,10 +14,11 @@ import com.travel.webservice.model.DestType;
 import com.travel.webservice.model.DestinationName;
 import com.travel.webservice.model.Destination;
 
-
+// interface of the implementation class 
 @WebService(name = "Travel",targetNamespace = "http://service.webservice.travel.com/")
 public interface Travel {
 
+	/*List of WebMethod that will allow the generation of the operation in the wdsl file*/
 	@WebMethod(operationName = "getCountry", action = "urn:GetCountry")
 	@WebResult(name = "result")
 	List<Country> getCountry();

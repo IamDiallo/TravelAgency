@@ -134,26 +134,6 @@ a{
           <i class="zmdi zmdi-widgets"></i> Add Destination
         </a>
       </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-calendar"></i> Infos RIB
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-info-outline"></i> À propos
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-settings"></i> Services
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-comment-more"></i> Contact
-        </a>
-      </li>
     </ul>
   </div>
   <!-- Content -->
