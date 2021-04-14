@@ -29,10 +29,12 @@
             const place = data.name; // location
             const { description, icon } = data.weather[0]; 
             const { sunrise, sunset } = data.sys;
+          
             // Converting Epoch(Unix) time to GMT
             const sunriseGMT = new Date(sunrise * 1000);
             const sunsetGMT = new Date(sunset * 1000);
-            // get the temperature
+            
+            desc.textContent = `${description}`;
             tempC.textContent = `${temp.toFixed(2)} °C`;
             // get sunrise and sunset date and time
             sunriseDOM.textContent = `${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}`;

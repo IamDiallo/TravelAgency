@@ -145,7 +145,7 @@ a{
             <a href="#"><i class="icofont-logout" style="color:white; wh"></i></i>
             </a>
           </li>
-          <li><a href="logout.php" style="color:white" 
+          <li><a href="index.php" style="color:white" 
          >Déconnexion</a></li>
         </ul>
       </div>
@@ -174,6 +174,9 @@ a{
               <?php if(isset($cities1)){
                 foreach ($cities1->City as $cit){ ?>
                   <option value="<?php echo $cit->id; ?>"><?php echo $cit->name; ?></option>
+              <?php }}elseif(isset($cities)){
+                foreach ($cities->result as $cit){ ?>
+                 <option value="<?php echo $cit->id; ?>"><?php echo $cit->name; ?></option>
               <?php }} ?>
             </select>
           </div>
@@ -184,7 +187,10 @@ a{
                 foreach ($destinations1->destType as $dest){
               ?>
                 <option value="<?php echo $dest->id; ?>" ><?php echo $dest->destType; ?></option>
-              <?php }} ?>
+              <?php }} elseif(isset($destinations)){
+               foreach ($destinations->result as $dest){?>
+               <option value="<?php echo $dest->id; ?>" ><?php echo $dest->destType; ?></option>
+               <?php }} ?>
             </select>
           </div>
           <div class="form-group">
@@ -217,9 +223,9 @@ a{
                     </tr>
                 </thead>
                 <tbody>
-                  <?php if (isset($AllDest)) 
+                  <?php if (isset($AllDest1)) 
                     {
-                      foreach ($AllDest->destName as $listDest){
+                      foreach ($AllDest1->destName as $listDest){
                       ?>
                       <tr>
                         <td><?php echo $listDest->id; ?></td>
@@ -228,7 +234,16 @@ a{
                         <td><?php echo $listDest->cityName;?></td>
                         <td><button type="submit" class="btn btn-danger"><a href="admin.php?idDest=<?php echo $listDest->id; ?>"  style="color: none;">DELETE</a></button></td>
                       </tr>
-                  <?php }} ?>
+                  <?php }} elseif(isset($AllDest)){
+                     foreach ($AllDest->result as $listDest){ ?>
+                        <tr>
+                          <td><?php echo $listDest->id; ?></td>
+                          <td><?php echo $listDest->nameDest;?></td>
+                          <td><?php echo $listDest->nameTypeDest;?></td>
+                          <td><?php echo $listDest->cityName;?></td>
+                          <td><button type="submit" class="btn btn-danger"><a href="admin.php?idDest1=<?php echo $listDest->id; ?>"  style="color: none;">DELETE</a></button></td>
+                        </tr>
+                        <?php }} ?>
                 </tbody>
             </table>
           </form>

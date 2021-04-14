@@ -10,6 +10,9 @@ public class Destination {
 	int cityDest;
 	String img;
 	
+	
+	
+	
 	public Destination() {
 		super();
 	}

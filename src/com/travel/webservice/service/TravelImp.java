@@ -60,8 +60,8 @@ public class TravelImp implements Travel{
                 dt.setId(rs.getInt("id"));
                 dt.setNameDest(rs.getString("nameDest"));
                 dt.setTypeDest(rs.getInt("typeDest"));
-                dt.setDestName(rs.getString("destType"));
                 dt.setImg(rs.getString("img"));
+                dt.setDestName(rs.getString("destType"));
                 cityDest.add(dt); // add the object to the list
             }
         } catch (Exception e) {
@@ -96,7 +96,7 @@ public class TravelImp implements Travel{
         return cityType;  // return the list
     } 
 
-    // list of destinations
+    // list of destinations type
 	public List<DestType> getDestinations() {
 		List<DestType> destTypeList = new ArrayList<DestType>(); // instantiate a list to store all the element that will be returned
 		try {
@@ -167,8 +167,62 @@ public class TravelImp implements Travel{
 		return destTypeGroup;  // return the list
 	}
     
+	// add a destination
+		public int addDest(String desnameDest, String typeDest, int city_id, String img) {
+			try {
+		        String sql ="INSERT INTO destinations(nameDest, typeDest, city_id, img) VALUES (?, ?, ?, ?)";
+		        db.myPrepareStatement(sql);
+		        Object[] parameters = {desnameDest, typeDest, city_id, img};
+		        db.addParameters(parameters);
+		        db.myExecuteUpdate();
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			        System.out.print(e.getMessage());
+			        return 1;
+			    }
+			return 0; // 0 if succesful
+		
+		}
 	
-
+		// get All destination
+		public List<DestinationName> getAllDest() {
+			List<DestinationName> dn  = new ArrayList<DestinationName>();
+			 try {
+		            String sql ="SELECT * FROM destinations join dest_type on destinations.typeDest = dest_type.id JOIN cities on destinations.city_id =cities.id";
+		            db.myPrepareStatement(sql);
+		            ResultSet rs = db.myExecuteQuery();
+		            while(rs.next()) {
+		                DestinationName destName = new DestinationName(); // instantiate a country object and add the value of the sql query in it
+		                destName.setId(rs.getInt("destination_id"));
+		                destName.setNameDest(rs.getString("nameDest"));
+		                destName.setNameTypeDest(rs.getString("destType"));
+		                destName.setTypeDest(rs.getInt("typeDest"));
+		                destName.setCity_id(rs.getInt("city_id"));
+		                destName.setCityName(rs.getString("name"));
+		                destName.setImg(rs.getString("img"));
+		                dn.add(destName); // add the object to the list
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		        return dn;  // return the list
+		}
+		
+		// Delete a destination
+		public boolean deleteDest(int id) {
+			try {
+		        String sql ="DELETE FROM destinations WHERE destination_id = ?";
+		        db.myPrepareStatement(sql);
+		        Object[] parameters = {id};
+		        db.addParameters(parameters);
+		        db.myExecuteUpdate();
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			        System.out.print(e.getMessage());
+			    }
+			return true;
+		
+		}
 
 }
 

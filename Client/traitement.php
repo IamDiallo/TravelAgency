@@ -32,13 +32,27 @@
 		$clientSOAP = new SoapClient($wsdl, $options);
         
 		// call the webservice and specify the operation that we want
+		// get all countries
 		$countries = $clientSOAP->__soapCall("getCountry",array());
-
+        // get all destinations type
 		$destinations = $clientSOAP->__soapCall("getDestinations",array());
-
+        // get all cities
 	    $cities = $clientSOAP->__soapCall("getCities",array());
+		// get all destinations group
 		$destGroup = $clientSOAP->__soapCall("getDestGroup",array());
 	    
+		// get all destinations 
+		$AllDest = $clientSOAP->__soapCall("getAllDest",array());
+        
+		// delete a destination
+		if (isset($_GET['idDest1'])) {
+			$idDest = $_GET['idDest1'];
+             // Set request params
+			$paramDest = new stdClass();
+			$paramDest->id = $idDest;
+			// get all destinations 
+		    $deleteDest = $clientSOAP->__soapCall("deleteDest",array($paramDest));
+		}
 		// check if the cityId is not empty then call the webservice 
     	if (isset($cityId)) {
 			 // Set request params
@@ -55,7 +69,17 @@
 			// specify the operation and pass the parameter
 			$listDestination = $clientSOAP->__soapCall("getDestinationName", array($param));
 		}
-			
+
+		if (isset($name)) {
+			// call the webservice and specify the operation that we want
+			// Set request params
+			$paramDestination = new stdClass();
+			$paramDestination->dest = $name;
+			$paramDestination->typeDest = $idTypeDest;
+			$paramDestination->city_id = $idCity;
+			$paramDestination->img = $image;
+		    $addDestination = $clientSOAP->__soapCall("addDest",array($paramDestination));
+		}
 	} 
 	// if jaxws is not available then use jaxrs
 	catch (SoapFault $fault) {
@@ -126,7 +150,7 @@
 			$resp = curl_exec($curl);
 			
 			curl_close($curl);
-			$AllDest = new SimpleXMLElement($resp);
+			$AllDest1 = new SimpleXMLElement($resp);
 			
 			if (isset($_GET['idDest'])) {
 				$idDest = $_GET['idDest'];
