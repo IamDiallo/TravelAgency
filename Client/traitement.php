@@ -131,7 +131,7 @@
 
             $destGroup1 = new SimpleXMLElement(file_get_contents($url.'/destGroups'));
 
-            // get a destination by by
+            // get a destination id
             if(isset($_GET['update_id'])) {
             	$getDestination = new SimpleXMLElement(file_get_contents($url.'/'.$_GET['update_id']));
             }

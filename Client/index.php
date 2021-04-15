@@ -28,15 +28,12 @@
 	</div>
 </header>
 <!-- header bar end -->	
-
-<!-- search start -->
-<div id="adver">
-	<img src="img/headline.jpg" alt="bgimage of adver">
-	<div class="center"></div>
-	<div class="center copy">
-		<input type="text" class="search" placeholder="Enter a place you like">
-		<button class="button">Search</button>		
-	</div>
+<div id="headline">
+		<img src="img/headline.jpg" alt="headline">
+		<hgroup>
+			<h2>Welcome to DIAMS Agency</h2>
+			<h3>City, art, sea, mount, and people ...</h3>
+		</hgroup>
 </div>
 <!-- search end -->
 
