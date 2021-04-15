@@ -17,6 +17,14 @@
     <wsdl:part name="parameters" element="tns:getDestinationsByCityResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="updateDestResponse">
+    <wsdl:part name="parameters" element="tns:updateDestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDest">
+    <wsdl:part name="parameters" element="tns:getDest">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="deleteDestResponse">
     <wsdl:part name="parameters" element="tns:deleteDestResponse">
     </wsdl:part>
@@ -61,6 +69,10 @@
     <wsdl:part name="parameters" element="tns:getDestinationsResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getDestResponse">
+    <wsdl:part name="parameters" element="tns:getDestResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getDestinationsByCity">
     <wsdl:part name="parameters" element="tns:getDestinationsByCity">
     </wsdl:part>
@@ -75,6 +87,10 @@
   </wsdl:message>
   <wsdl:message name="getCountryResponse">
     <wsdl:part name="parameters" element="tns:getCountryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateDest">
+    <wsdl:part name="parameters" element="tns:updateDest">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="Travel">
@@ -94,6 +110,12 @@
       <wsdl:input name="getCountry" message="tns:getCountry">
     </wsdl:input>
       <wsdl:output name="getCountryResponse" message="tns:getCountryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDest">
+      <wsdl:input name="getDest" message="tns:getDest">
+    </wsdl:input>
+      <wsdl:output name="getDestResponse" message="tns:getDestResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getAllDest">
@@ -124,6 +146,12 @@
       <wsdl:input name="getDestGroup" message="tns:getDestGroup">
     </wsdl:input>
       <wsdl:output name="getDestGroupResponse" message="tns:getDestGroupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateDest">
+      <wsdl:input name="updateDest" message="tns:updateDest">
+    </wsdl:input>
+      <wsdl:output name="updateDestResponse" message="tns:updateDestResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getDestinations">
@@ -159,6 +187,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getCountryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDest">
+      <soap:operation soapAction="GetDest" style="document"/>
+      <wsdl:input name="getDest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDestResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
@@ -207,6 +244,15 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="updateDest">
+      <soap:operation soapAction="urn:UpdateDest" style="document"/>
+      <wsdl:input name="updateDest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateDestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getDestinations">
       <soap:operation soapAction="urn:GetDestinations" style="document"/>
       <wsdl:input name="getDestinations">
@@ -219,7 +265,7 @@
   </wsdl:binding>
   <wsdl:service name="TravelService">
     <wsdl:port name="TravelPort" binding="tns:TravelServiceSoapBinding">
-      <soap:address location="http://localhost:8080/com.travel.webservice/services/TravelPort"/>
+      <soap:address location="http://localhost:8080/com.travel.webservice/services"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -15,18 +15,22 @@
 <xs:element name="getCitiesResponse" type="tns:getCitiesResponse"/>
 <xs:element name="getCountry" type="tns:getCountry"/>
 <xs:element name="getCountryResponse" type="tns:getCountryResponse"/>
+<xs:element name="getDest" type="tns:getDest"/>
 <xs:element name="getDestGroup" type="tns:getDestGroup"/>
 <xs:element name="getDestGroupResponse" type="tns:getDestGroupResponse"/>
+<xs:element name="getDestResponse" type="tns:getDestResponse"/>
 <xs:element name="getDestinationName" type="tns:getDestinationName"/>
 <xs:element name="getDestinationNameResponse" type="tns:getDestinationNameResponse"/>
 <xs:element name="getDestinations" type="tns:getDestinations"/>
 <xs:element name="getDestinationsByCity" type="tns:getDestinationsByCity"/>
 <xs:element name="getDestinationsByCityResponse" type="tns:getDestinationsByCityResponse"/>
 <xs:element name="getDestinationsResponse" type="tns:getDestinationsResponse"/>
+<xs:element name="updateDest" type="tns:updateDest"/>
+<xs:element name="updateDestResponse" type="tns:updateDestResponse"/>
 <xs:complexType name="addDest">
     <xs:sequence>
       <xs:element minOccurs="0" name="dest" type="xs:string"/>
-      <xs:element minOccurs="0" name="typeDest" type="xs:string"/>
+      <xs:element name="typeDest" type="xs:int"/>
       <xs:element name="city_id" type="xs:int"/>
       <xs:element minOccurs="0" name="img" type="xs:string"/>
     </xs:sequence>
@@ -70,6 +74,16 @@
       <xs:element minOccurs="0" name="continent" type="xs:string"/>
       <xs:element name="id" type="xs:int"/>
       <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDest">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:destinationName"/>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="getAllDest">
@@ -145,6 +159,20 @@
       <xs:element name="destiId" type="xs:int"/>
       <xs:element name="latitude" type="xs:float"/>
       <xs:element name="longitude" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateDest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dest" type="xs:string"/>
+      <xs:element name="typeDest" type="xs:int"/>
+      <xs:element name="city_id" type="xs:int"/>
+      <xs:element minOccurs="0" name="img" type="xs:string"/>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateDestResponse">
+    <xs:sequence>
+      <xs:element name="result" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="getDestinations">

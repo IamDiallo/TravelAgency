@@ -1,5 +1,5 @@
 <?php 
-	include("traitement.php");
+  include("traitement.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,10 +163,10 @@ a{
     </div>
     <div id="collapse1" class="panel-collapse collapse in">
       <div class="panel-body">
-        <form method="post" action="#" enctype="multipart/form-data">
+        <form method="post" action="admin.php" enctype="multipart/form-data">
           <div class="form-group">
             <label>Image</label>
-            <input type="file" name="mon_image" />
+            <input type="file" name="mon_image"/>
           </div>
           <div class="form-group">
             <label>City</label>
@@ -187,7 +187,7 @@ a{
                 foreach ($destinations1->destType as $dest){
               ?>
                 <option value="<?php echo $dest->id; ?>" ><?php echo $dest->destType; ?></option>
-              <?php }} elseif(isset($destinations)){
+               <?php }} elseif(isset($destinations)){
                foreach ($destinations->result as $dest){?>
                <option value="<?php echo $dest->id; ?>" ><?php echo $dest->destType; ?></option>
                <?php }} ?>
@@ -211,45 +211,129 @@ a{
       </div>
     </div>
     <div id="collapse3" class="panel-collapse collapse">
-      <form>
+      <form method="post" action="#">
         <table id="example2"  class="table table-bordered" style="width:100%; margin-top:20px">
-                <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>NAME</th>
-                      <th>TYPE</th>
-                      <th>CITY</th>
-                      <th>DELETE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <?php if (isset($AllDest1)) 
-                    {
-                      foreach ($AllDest1->destName as $listDest){
-                      ?>
-                      <tr>
-                        <td><?php echo $listDest->id; ?></td>
-                        <td><?php echo $listDest->nameDest;?></td>
-                        <td><?php echo $listDest->nameTypeDest;?></td>
-                        <td><?php echo $listDest->cityName;?></td>
-                        <td><button type="submit" class="btn btn-danger"><a href="admin.php?idDest=<?php echo $listDest->id; ?>"  style="color: none;">DELETE</a></button></td>
-                      </tr>
-                  <?php }} elseif(isset($AllDest)){
-                     foreach ($AllDest->result as $listDest){ ?>
-                        <tr>
-                          <td><?php echo $listDest->id; ?></td>
-                          <td><?php echo $listDest->nameDest;?></td>
-                          <td><?php echo $listDest->nameTypeDest;?></td>
-                          <td><?php echo $listDest->cityName;?></td>
-                          <td><button type="submit" class="btn btn-danger"><a href="admin.php?idDest1=<?php echo $listDest->id; ?>"  style="color: none;">DELETE</a></button></td>
-                        </tr>
-                        <?php }} ?>
-                </tbody>
-            </table>
-          </form>
-      </div>
+          <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>TYPE</th>
+                <th>CITY</th>
+                <th>DELETE</th>
+                <th>UPDATE</th>
+              </tr>
+          </thead>
+          <tbody>
+            <?php if (isset($AllDest1)) 
+              {
+                foreach ($AllDest1->destName as $listDest){
+                ?>
+                <tr>
+                  <td><?php echo $listDest->id; ?></td>
+                  <td><?php echo $listDest->nameDest;?></td>
+                  <td><?php echo $listDest->nameTypeDest;?></td>
+                  <td><?php echo $listDest->cityName;?></td>
+                  <td><a href="admin.php?delete_id=<?php echo $listDest->id; ?>" type="submit" class="btn btn-danger">DELETE</a></td>
+                  <td><a href="admin.php?update_id=<?php echo $listDest->id; ?>" type="submit"  class="btn btn-success">UPDATE</a></td>
+                </tr>
+                <?php }} elseif(isset($AllDest)){
+                 foreach ($AllDest->result as $listDest){ ?>
+                <tr>
+                  <td><?php echo $listDest->id; ?></td>
+                  <td><?php echo $listDest->nameDest;?></td>
+                  <td><?php echo $listDest->nameTypeDest;?></td>
+                  <td><?php echo $listDest->cityName;?></td>
+                  <td><a href="admin.php?delete_id=<?php echo $listDest->id; ?>" type="submit" class="btn btn-danger">DELETE</a></button></td>
+                  <td><a href="admin.php?update_id=<?php echo $listDest->id; ?>" type="submit"  class="btn btn-success">UPDATE</a></td>
+                </tr>
+                <?php }} ?>
+          </tbody>
+        </table>
+      </form>
+    </div>
   </div>
-</div>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title" style="font-size:30px">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" style="text-decoration: none;">
+        Update Destination</a>
+      </div>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">
+        <form method="post" action="" enctype="multipart/form-data">
+          <?php if (isset($getDestination)) {
+           ?>
+            <input type="hidden" name="id" value="<?php echo $getDestination->id; ?>">
+            <div class="form-group">
+              <label>Image</label>
+              <input type="file" name="mon_image"/>
+            </div>
+            <div class="form-group">
+              <label>City</label>
+              <select class="form-control" name="city">
+                <option value="<?php echo $getDestination->city_id; ?>"><?php echo $getDestination->cityName;?></option>
+                <?php if(isset($cities1)){
+                  foreach ($cities1->City as $cit){ ?>
+                    <option value="<?php echo $cit->id; ?>"><?php echo $cit->name; ?></option>
+                <?php }} ?>
+              </select>
+              </div>
+              <div class="form-group">
+                <label>Destination Type</label>
+                <select class="form-control" name="typeDest">
+                  <option value="<?php echo $getDestination->typeDest; ?>"><?php echo $getDestination->nameTypeDest; ?></option>
+                  <?php if (isset($destinations1)) {
+                    foreach ($destinations1->destType as $dest){
+                  ?>
+                    <option value="<?php echo $dest->id; ?>" ><?php echo $dest->destType; ?></option>
+                  <?php }} ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" type="text" name="name" value="<?php echo $getDestination->nameDest; ?>">
+              </div>
+              <button type="submit"  name="update" class="btn btn-primary">Save</button>
+           <?php  }elseif (isset($getDest)) {
+                foreach ($getDest as $getDest){
+               ?>
+                <input type="hidden" name="id" value="<?php echo $getDest->id; ?>">
+                <div class="form-group">
+                  <label>Image</label>
+                  <input type="file" name="mon_image"/>
+                </div>
+                <div class="form-group">
+                  <label>City</label>
+                  <select class="form-control" name="city">
+                    <option value="<?php echo $getDest->city_id; ?>"><?php echo $getDest->cityName;?></option>
+                    <?php if(isset($cities)){
+                        foreach ($cities->result as $cit){ ?>
+                       <option value="<?php echo $cit->id; ?>"><?php echo $cit->name; ?></option>
+                    <?php }} ?>
+                  </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Destination Type</label>
+                    <select class="form-control" name="typeDest">
+                      <option value="<?php echo $getDest->typeDest; ?>"><?php echo $getDest->nameTypeDest; ?></option>
+                      <?php if(isset($destinations)){
+                     foreach ($destinations->result as $dest){?>
+                     <option value="<?php echo $dest->id; ?>" ><?php echo $dest->destType; ?></option>
+                     <?php }} ?>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" type="text" name="name" value="<?php echo $getDest->nameDest; ?>">
+                  </div>
+                  <button type="submit"  name="update" class="btn btn-primary">Save</button>
+                 <?php }}?>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

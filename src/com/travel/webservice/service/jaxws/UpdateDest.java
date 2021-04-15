@@ -13,11 +13,11 @@ import javax.xml.bind.annotation.XmlType;
  * Generated source version: 2.7.18
  */
 
-@XmlRootElement(name = "addDest", namespace = "http://service.webservice.travel.com/")
+@XmlRootElement(name = "updateDest", namespace = "http://service.webservice.travel.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "addDest", namespace = "http://service.webservice.travel.com/", propOrder = {"dest", "typeDest", "city_id", "img"})
+@XmlType(name = "updateDest", namespace = "http://service.webservice.travel.com/", propOrder = {"dest", "typeDest", "city_id", "img", "id"})
 
-public class AddDest {
+public class UpdateDest {
 
     @XmlElement(name = "dest")
     private java.lang.String dest;
@@ -27,6 +27,8 @@ public class AddDest {
     private int city_id;
     @XmlElement(name = "img")
     private java.lang.String img;
+    @XmlElement(name = "id")
+    private int id;
 
     public java.lang.String getDest() {
         return this.dest;
@@ -58,6 +60,14 @@ public class AddDest {
 
     public void setImg(java.lang.String newImg)  {
         this.img = newImg;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int newId)  {
+        this.id = newId;
     }
 
 }

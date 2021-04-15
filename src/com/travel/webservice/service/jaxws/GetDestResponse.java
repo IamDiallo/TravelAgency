@@ -13,20 +13,20 @@ import javax.xml.bind.annotation.XmlType;
  * Generated source version: 2.7.18
  */
 
-@XmlRootElement(name = "getDestinationsResponse", namespace = "http://service.webservice.travel.com/")
+@XmlRootElement(name = "getDestResponse", namespace = "http://service.webservice.travel.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getDestinationsResponse", namespace = "http://service.webservice.travel.com/")
+@XmlType(name = "getDestResponse", namespace = "http://service.webservice.travel.com/")
 
-public class GetDestinationsResponse {
+public class GetDestResponse {
 
     @XmlElement(name = "result")
-    private java.util.List<com.travel.webservice.model.DestType> result;
+    private com.travel.webservice.model.DestinationName result;
 
-    public java.util.List<com.travel.webservice.model.DestType> getResult() {
+    public com.travel.webservice.model.DestinationName getResult() {
         return this.result;
     }
 
-    public void setResult(java.util.List<com.travel.webservice.model.DestType> newResult)  {
+    public void setResult(com.travel.webservice.model.DestinationName newResult)  {
         this.result = newResult;
     }
 

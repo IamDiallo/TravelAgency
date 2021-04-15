@@ -45,12 +45,21 @@ public interface Travel {
 	
 	@WebMethod(operationName="addDest",action = "urn:AddDest")
 	@WebResult(name = "result")
-	int addDest(@WebParam(name="dest") String desnameDest, @WebParam(name="typeDest") String typeDest, 
+	int addDest(@WebParam(name="dest") String nameDest, @WebParam(name="typeDest") int typeDest, 
 			 @WebParam(name="city_id") int city_id, @WebParam(name="img") String img);
 	
 	@WebMethod(operationName = "getAllDest", action = "urn:GetAllDest")
 	@WebResult(name = "result")
 	List<DestinationName> getAllDest();
+	
+	@WebMethod(operationName = "getDest", action = "GetDest")
+	@WebResult(name = "result")
+	DestinationName getDest(@WebParam(name="id") int id);
+	
+	@WebMethod(operationName="updateDest",action = "urn:UpdateDest")
+	@WebResult(name = "result")
+	int updateDest(@WebParam(name="dest") String nameDest, @WebParam(name="typeDest") int typeDest, 
+			 @WebParam(name="city_id") int city_id, @WebParam(name="img") String img, @WebParam(name="id") int id);
 	
 	@WebMethod(operationName = "deleteDest", action = "urn:DeleteDest")
 	@WebResult(name = "result")

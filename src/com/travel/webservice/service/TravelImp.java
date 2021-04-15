@@ -62,6 +62,7 @@ public class TravelImp implements Travel{
                 dt.setTypeDest(rs.getInt("typeDest"));
                 dt.setImg(rs.getString("img"));
                 dt.setDestName(rs.getString("destType"));
+                dt.setCityDest(rs.getInt("city_id"));
                 cityDest.add(dt); // add the object to the list
             }
         } catch (Exception e) {
@@ -168,11 +169,11 @@ public class TravelImp implements Travel{
 	}
     
 	// add a destination
-		public int addDest(String desnameDest, String typeDest, int city_id, String img) {
+		public int addDest(String nameDest, int typeDest, int city_id, String img) {
 			try {
 		        String sql ="INSERT INTO destinations(nameDest, typeDest, city_id, img) VALUES (?, ?, ?, ?)";
 		        db.myPrepareStatement(sql);
-		        Object[] parameters = {desnameDest, typeDest, city_id, img};
+		        Object[] parameters = {nameDest, typeDest, city_id, img};
 		        db.addParameters(parameters);
 		        db.myExecuteUpdate();
 			    } catch (Exception e) {
@@ -206,6 +207,48 @@ public class TravelImp implements Travel{
 		            e.printStackTrace();
 		        }
 		        return dn;  // return the list
+		}
+		
+		// get destination by id
+		public DestinationName getDest(int id) {
+			DestinationName dt = new DestinationName();
+			try {
+		        String sql ="SELECT * FROM destinations join dest_type on destinations.typeDest = dest_type.id JOIN cities on destinations.city_id =cities.id WHERE destination_id = ?";
+		        db.myPrepareStatement(sql);
+	            Object[] parameters = {id};
+	            db.addParameters(parameters);
+	            ResultSet rs = db.myExecuteQuery();
+	            while(rs.next()) {
+	            	dt.setId(rs.getInt("id"));
+	                dt.setNameDest(rs.getString("nameDest"));
+	                dt.setTypeDest(rs.getInt("typeDest"));
+	                dt.setCity_id(rs.getInt("city_id"));
+	                dt.setCityName(rs.getString("name"));
+	                dt.setImg(rs.getString("img"));
+	                dt.setNameTypeDest(rs.getString("destType"));
+	            }
+			} catch (Exception e) {
+	            e.printStackTrace();
+	        }
+			
+			return dt;
+		
+		}
+		
+		// update informations for a destination
+		public int updateDest(String nameDest, int typeDest, int city_id, String img, int id) {
+			try {
+		        String sql ="UPDATE destinations SET nameDest= ?,typeDest=?,city_id = ?,img = ? WHERE destination_id = ?";
+		        db.myPrepareStatement(sql);
+		        Object[] parameters = {nameDest, typeDest, city_id, img, id};
+		        db.addParameters(parameters);
+		        db.myExecuteUpdate();
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			        System.out.print(e.getMessage());
+			    }
+			return id;
+		
 		}
 		
 		// Delete a destination

@@ -3,6 +3,7 @@ package com.travel.webservice.service.jaxws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -12,12 +13,22 @@ import javax.xml.bind.annotation.XmlType;
  * Generated source version: 2.7.18
  */
 
-@XmlRootElement(name = "getCities", namespace = "http://service.webservice.travel.com/")
+@XmlRootElement(name = "getDest", namespace = "http://service.webservice.travel.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getCities", namespace = "http://service.webservice.travel.com/")
+@XmlType(name = "getDest", namespace = "http://service.webservice.travel.com/")
 
-public class GetCities {
+public class GetDest {
 
+    @XmlElement(name = "id")
+    private int id;
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int newId)  {
+        this.id = newId;
+    }
 
 }
 
