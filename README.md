@@ -34,4 +34,3 @@ For the admin he can easily add destination if the a city or remove a destinatio
   Email: mamadou-bella.diallo9@etu.cyu.fr  </br>
   Name:DIAWARE Mourtalla Faty  </br>
   Email: mourtalla-faty.diawara@etu.cyu.fr 
-<p>Interface Design Inspired by: Github User Shao0203/Travel</p>
