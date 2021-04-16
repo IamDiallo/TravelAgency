@@ -26,7 +26,7 @@ The client which was written in php has an interactive interface built with html
 Furthermore, we built an interface for the admin where it is possible to dynamically add destinations, update destination's info.
 <h2>C.Weather Service:</h2>
 We also called the openweathermap API that gives the weather condition of each city that we serve. Information such the temperature, the date and time of sunset and sunrise and the sky description.
-<h2>C.Use Case:</h2>
+<h2>D.Use Case:</h2>
 for example if a person wants to in holliday in europe, the user firstly can go through a list of countries that we provide our travel service. For each country, there are a list of cities that we provide information. For each city, the user can get all destination available in that city: montaign, beaches, zoo, monuments, forest, parc and that city. Before visiting, the user can also check what is the weather condition of the city like the temperature, weather the sky is clear....
 For the admin he can easily add destination if the a city or remove a destination it they no longuer serve there.
 <h2>Group Members: </h2> 
